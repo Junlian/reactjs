@@ -1,0 +1,124 @@
+GroceryDash - Full Stack Project Setup Guide
+===========================================
+
+Prerequisites:
+-------------
+1. Node.js (Latest LTS version)
+2. MongoDB installed locally
+3. Git
+4. Code editor (VS Code recommended)
+
+Step 1: Initial Setup
+--------------------
+1. Clone the repository
+2. Create a .env file in the root directory with the following content:   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/grocerydash
+   JWT_SECRET=your_unique_secret_key_here
+   NODE_ENV=development   ```
+   Note: Replace 'your_unique_secret_key_here' with a secure random string
+
+Step 2: Database Setup
+---------------------
+1. Start MongoDB service locally
+2. MongoDB will automatically create the 'grocerydash' database when the server first connects
+
+Step 3: Install Dependencies
+---------------------------
+1. Install server dependencies:   ```
+   npm install   ```
+
+Step 4: Start Development Servers
+-------------------------------
+1. Start the backend server:   ```
+   npm run server   ```
+   Server will run on http://localhost:5000
+
+2. In a new terminal, start the frontend development server:   ```
+   npm run dev   ```
+   Frontend will run on http://localhost:5173
+
+Project Structure Overview:
+-------------------------
+/server
+  - Backend Express.js server
+  - MongoDB models
+  - Authentication routes
+  - API controllers
+
+/src
+  - React frontend application
+  - Components
+  - Redux store
+  - Pages
+  - Hooks and utilities
+
+Key Features Available:
+---------------------
+1. User Authentication (Register/Login)
+2. Product Browsing
+3. Shopping Cart
+4. Protected Routes
+5. Responsive Design
+
+Testing The Application:
+----------------------
+1. Backend API Testing:
+   - Use Postman or similar tool to test endpoints:
+     * POST /api/auth/register
+     * POST /api/auth/login
+
+2. Frontend Testing:
+   - Visit http://localhost:5173
+   - Test registration and login
+   - Test navigation and cart functionality
+
+Common Issues & Solutions:
+------------------------
+1. MongoDB Connection Issues:
+   - Ensure MongoDB service is running
+   - Check MONGODB_URI in .env file
+   - Verify network connectivity
+
+2. Port Conflicts:
+   - If port 5000 is in use, modify PORT in .env
+   - If port 5173 is in use, Vite will automatically find next available port
+
+Development Workflow:
+-------------------
+1. Backend Changes:
+   - Edit files in /server directory
+   - Server will automatically restart (nodemon)
+
+2. Frontend Changes:
+   - Edit files in /src directory
+   - Changes will hot-reload automatically
+
+3. Database:
+   - Use MongoDB Compass for database visualization
+   - Default connection: mongodb://localhost:27017
+
+Deployment Considerations:
+------------------------
+1. Update environment variables for production
+2. Set NODE_ENV=production
+3. Use secure MONGODB_URI
+4. Generate new JWT_SECRET
+5. Build frontend: npm run build
+
+Additional Notes:
+---------------
+- Project uses Tailwind CSS for styling
+- Redux for state management
+- JWT for authentication
+- Lucide React for icons
+- TypeScript for type safety
+
+Support:
+-------
+For issues:
+1. Check the error logs
+2. Verify environment variables
+3. Ensure all dependencies are installed
+4. Check MongoDB connection
+5. Verify API endpoints 

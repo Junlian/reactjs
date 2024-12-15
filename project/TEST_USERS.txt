@@ -1,0 +1,81 @@
+GroceryDash Test Users
+=====================
+
+1. Regular Customer
+------------------
+Email: customer@example.com
+Password: Customer123!
+Name: John Customer
+Role: Customer
+Features:
+- Can browse products
+- Can add to cart
+- Can place orders
+- Can manage profile
+
+2. Premium Customer
+------------------
+Email: premium@example.com
+Password: Premium123!
+Name: Sarah Premium
+Role: Premium Customer
+Features:
+- All regular customer features
+- Free delivery
+- Special discounts
+- Priority support
+
+3. Store Owner
+-------------
+Email: store@example.com
+Password: Store123!
+Name: Mike Store
+Role: Store Owner
+Features:
+- Can manage store profile
+- Can manage products
+- Can view orders
+- Can update inventory
+
+4. Admin User
+------------
+Email: admin@example.com
+Password: Admin123!
+Name: Admin User
+Role: Administrator
+Features:
+- Full system access
+- User management
+- Store management
+- System settings
+
+Test Account Notes:
+------------------
+1. All passwords meet security requirements:
+   - Minimum 8 characters
+   - Contains uppercase and lowercase letters
+   - Contains numbers
+   - Contains special characters
+
+2. Database Setup:
+   - These users are automatically created when running initDb.js
+   - Passwords are properly hashed in the database
+   - Each user has sample data (orders, addresses, etc.)
+
+3. Testing Instructions:
+   - Use these accounts for testing different user roles
+   - Do not use in production
+   - Change passwords if deploying to staging/production
+
+4. API Access:
+   - All accounts can access the API with their credentials
+   - JWT tokens are generated upon login
+   - Tokens expire after 24 hours
+
+Security Notice:
+---------------
+These are test accounts only. For production:
+1. Change all passwords
+2. Generate new JWT secrets
+3. Update email addresses
+4. Remove test data 
