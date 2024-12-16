@@ -1,39 +1,53 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
+const addressSchema = new mongoose.Schema({
+  street: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  state: {
+    type: String,
+    required: true
+  },
+  zipCode: {
+    type: String,
+    required: true
+  },
+  isDefault: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    lowercase: true,
+    lowercase: true
   },
   password: {
     type: String,
     required: true,
-    minlength: 6,
+    minlength: 6
   },
   name: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
   role: {
     type: String,
     enum: ['customer', 'premium', 'store_owner', 'admin'],
     default: 'customer'
   },
-  addresses: [{
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    isDefault: {
-      type: Boolean,
-      default: false,
-    },
-  }],
+  addresses: [addressSchema],
   lastLogin: {
     type: Date,
     default: null
@@ -44,8 +58,8 @@ const userSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
 // Hash password before saving

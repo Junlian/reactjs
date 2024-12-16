@@ -5,6 +5,7 @@ import { store, persistor } from './store';
 import AppRoutes from './routes';
 import Layout from './components/Layout';
 import LoadingSpinner from './components/LoadingSpinner';
+import './index.css';
 
 function App() {
   return (

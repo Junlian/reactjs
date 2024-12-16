@@ -1,8 +1,8 @@
-export interface User {
+// Base types
+export interface BaseEntity {
   id: string;
-  email: string;
-  name: string;
-  addresses: Address[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Address {
@@ -14,38 +14,37 @@ export interface Address {
   isDefault: boolean;
 }
 
-export * from './auth';
+export interface User extends BaseEntity {
+  email: string;
+  name: string;
+  role: UserRole;
+  addresses: Address[];
+}
 
-export interface Product {
-  id: string;
+export type UserRole = 'customer' | 'premium' | 'store_owner' | 'admin';
+
+export interface Product extends BaseEntity {
   name: string;
   description: string;
   price: number;
   image: string;
-  category: string;
-  store: Store;
+  category: ProductCategory;
   stock: number;
+  store: Store;
+  isAvailable: boolean;
 }
 
-export interface Store {
-  id: string;
+export type ProductCategory = 'fruits' | 'vegetables' | 'dairy' | 'meat' | 'bakery' | 'beverages' | 'pantry';
+
+export interface Store extends BaseEntity {
   name: string;
   address: Address;
   rating: number;
   deliveryTime: string;
+  owner: User;
+  isActive: boolean;
 }
 
-export interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
-export interface Order {
-  id: string;
-  items: CartItem[];
-  total: number;
-  status: 'pending' | 'processing' | 'delivered' | 'cancelled';
-  deliveryAddress: Address;
-  createdAt: string;
-  store: Store;
-}
+// Export other type modules
+export * from './auth';
+export * from './cart';

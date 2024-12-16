@@ -9,9 +9,11 @@ export interface RegisterData {
   email: string;
   password: string;
   name: string;
+  role?: string;
 }
 
 export interface LoginResponse {
+  success: boolean;
   token: string;
   user: User;
 }
@@ -22,4 +24,11 @@ export interface AuthState {
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
+}
+
+export interface DecodedToken {
+  userId: string;
+  role: string;
+  exp?: number;
+  iat?: number;
 } 

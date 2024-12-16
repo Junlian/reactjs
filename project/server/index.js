@@ -4,31 +4,42 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
 import morgan from 'morgan';
+
+// Import models first
+import './models/User.js';
+import './models/Store.js';
+import './models/Product.js';
+import './models/Cart.js';
+import './models/Order.js';
+
+// Import routes after models
 import authRoutes from './routes/auth.js';
+import productRoutes from './routes/products.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 dotenv.config();
 
 const app = express();
 
-// Enhanced Middleware Setup
-app.use(helmet()); // Security headers
-app.use(morgan('dev')); // Logging
+// Middleware
+app.use(helmet());
+app.use(morgan('dev'));
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? process.env.FRONTEND_URL 
     : 'http://localhost:5173',
   credentials: true
 }));
-app.use(express.json({ limit: '10kb' })); // Limit payload size
+app.use(express.json({ limit: '10kb' }));
 
-// Health check route
+// Health check
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
@@ -41,20 +52,13 @@ app.use('*', (req, res) => {
 // Error handling
 app.use(errorHandler);
 
-// Improved MongoDB connection
+// MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => {
     console.error('MongoDB connection error:', err);
     process.exit(1);
   });
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received. Shutting down gracefully');
-  mongoose.connection.close();
-  process.exit(0);
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

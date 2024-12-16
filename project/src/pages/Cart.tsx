@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { RootState } from '../store';
-import { removeFromCart, updateQuantity } from '../store/slices/cartSlice';
+import { updateQuantity, removeFromCart } from '../store/slices/cartSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Cart = () => {
